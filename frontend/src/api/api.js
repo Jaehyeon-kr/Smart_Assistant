@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'https://smartassistant-production.up.railway.app/api',
+  baseURL: 'https://smartassistant-production.up.railway.app',
 });
 
 api.interceptors.request.use((config) => {
