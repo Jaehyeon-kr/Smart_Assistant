@@ -46,7 +46,7 @@ app.use((err, req, res, next) => {
 // 서버 시작
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
-  console.log(`\n✓ LecQ 서버 시작: http://localhost:${PORT}`);
+  console.log(`\n✓ SmartQ 서버 시작: http://localhost:${PORT}`);
   console.log(`✓ 환경: ${process.env.NODE_ENV}`);
   console.log(`✓ 데이터베이스: ${process.env.DB_PATH}\n`);
 });

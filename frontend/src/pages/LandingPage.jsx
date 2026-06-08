@@ -63,7 +63,7 @@ export default function LandingPage() {
 
   return (
     <div style={styles.container}>
-      <div style={styles.logo}>LecQ</div>
+      <div style={styles.logo}>SmartQ</div>
       <div style={styles.subtitle}>
         PDF 한 번 올리면, 요약·문제·노트가 완성됩니다
       </div>

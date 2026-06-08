@@ -71,7 +71,7 @@ export default function Navbar({ showDocuments, showSettings, showLogout, title,
   return (
     <nav style={styles.nav}>
       <div style={styles.left}>
-        <Link to="/" style={styles.logo}>LecQ</Link>
+        <Link to="/" style={styles.logo}>SmartQ</Link>
         {title && <span style={styles.title}>{title}</span>}
       </div>
       <div style={styles.right}>

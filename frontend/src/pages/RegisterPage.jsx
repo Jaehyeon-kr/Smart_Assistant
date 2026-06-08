@@ -140,7 +140,7 @@ export default function RegisterPage() {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <div style={styles.logo}>LecQ</div>
+        <div style={styles.logo}>SmartQ</div>
         {globalError && <div style={styles.globalError}>{globalError}</div>}
         <form onSubmit={handleSubmit} noValidate>
           <label style={styles.label}>이메일</label>

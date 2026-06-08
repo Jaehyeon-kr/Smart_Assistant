@@ -131,7 +131,7 @@ export default function LoginPage() {
     <div style={styles.container}>
       <style>{spinnerKeyframes}</style>
       <div style={styles.card}>
-        <div style={styles.logo}>LecQ</div>
+        <div style={styles.logo}>SmartQ</div>
         {error && <div style={styles.errorBox}>{error}</div>}
         <form onSubmit={handleSubmit}>
           <label style={styles.label}>이메일</label>
