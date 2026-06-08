@@ -23,9 +23,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // uploads 폴더가 없으면 생성
-if (!fs.existsSync(process.env.UPLOAD_DIR)) {
-  fs.mkdirSync(process.env.UPLOAD_DIR, { recursive: true });
+const uploadDir = process.env.UPLOAD_DIR || './uploads';
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
 }
+process.env.UPLOAD_DIR = uploadDir;
 
 // 정적 파일 서빙 (업로드된 PDF)
 app.use('/uploads', express.static(process.env.UPLOAD_DIR));
