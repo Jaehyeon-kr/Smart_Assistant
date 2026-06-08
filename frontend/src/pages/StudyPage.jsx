@@ -5,6 +5,7 @@ import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 import Navbar from '../components/Navbar';
 import { getSummary, retrySummary, getQuestions, retryQuestions, getNote, saveNote } from '../api/study';
+import api from '../api/api';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.mjs`;
 
@@ -466,8 +467,8 @@ function TutorPopup({ pdfId, onClose }) {
     const token = localStorage.getItem('token');
 
     try {
-      const baseURL = process.env.REACT_APP_API_URL || 'https://smartassistant-production.up.railway.app';
-      const res = await fetch(`${baseURL}/api/pdfs/${pdfId}/chat`, {
+      const backendUrl = 'https://smartassistant-production.up.railway.app';
+      const res = await fetch(`${backendUrl}/api/pdfs/${pdfId}/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -579,17 +580,12 @@ export default function StudyPage() {
   const [tutorOpen, setTutorOpen] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const baseURL = process.env.REACT_APP_API_URL || 'https://smartassistant-production.up.railway.app';
-    fetch(`${baseURL}/api/pdfs/${pdfId}/file`, {
-      headers: token ? { Authorization: `Bearer ${token}` } : {},
-    })
+    api.get(`/pdfs/${pdfId}/file`, { responseType: 'blob' })
       .then(async (res) => {
-        if (!res.ok) throw new Error('PDF 로드 실패');
-        const disposition = res.headers.get('Content-Disposition') || '';
+        const disposition = res.headers['content-disposition'] || '';
         const match = disposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
         if (match) setFileName(decodeURIComponent(match[1].replace(/['"]/g, '')));
-        const blob = await res.blob();
+        const blob = res.data;
         setPdfBlob(URL.createObjectURL(blob));
       })
       .catch((err) => console.error(err))
