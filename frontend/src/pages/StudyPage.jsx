@@ -466,7 +466,7 @@ function TutorPopup({ pdfId, onClose }) {
     const token = localStorage.getItem('token');
 
     try {
-      const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
+      const baseURL = process.env.REACT_APP_API_URL || 'https://smartassistant-production.up.railway.app';
       const res = await fetch(`${baseURL}/api/pdfs/${pdfId}/chat`, {
         method: 'POST',
         headers: {
@@ -580,7 +580,7 @@ export default function StudyPage() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
+    const baseURL = process.env.REACT_APP_API_URL || 'https://smartassistant-production.up.railway.app';
     fetch(`${baseURL}/api/pdfs/${pdfId}/file`, {
       headers: token ? { Authorization: `Bearer ${token}` } : {},
     })
