@@ -28,6 +28,10 @@ frontend/build/
 # PDF worker (node_modules에서 복사된 파일)
 frontend/public/pdf.worker.min.mjs
 
+# Lock files (Railway 호환성 문제로 제외)
+package-lock.json
+frontend/package-lock.json
+
 # Claude Code 설정
 .claude/
 
