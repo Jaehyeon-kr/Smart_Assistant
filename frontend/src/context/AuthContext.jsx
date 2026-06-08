@@ -10,7 +10,7 @@ export function AuthProvider({ children }) {
     if (stored !== token) {
       setToken(stored);
     }
-  }, []);
+  }, [token]);
 
   const login = (newToken) => {
     localStorage.setItem('token', newToken);

@@ -485,8 +485,6 @@ function TutorPopup({ pdfId, onClose }) {
 
       if (!res.ok) throw new Error('요청 실패');
 
-      const contentType = res.headers.get('Content-Type') || '';
-
       setMessages((prev) => [...prev, { role: 'assistant', content: '' }]);
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
