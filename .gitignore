@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Environment variables (절대 커밋 금지)
+.env
+.env.local
+.env.*.local
+
+# Database
+uploads/
+db/lecq.db
+db/*.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build output
+dist/
+build/
+frontend/build/
+
+# PDF worker (node_modules에서 복사된 파일)
+frontend/public/pdf.worker.min.mjs
+
+# Claude Code 설정
+.claude/
+
+# 명세서 이미지 (용량 큼)
+img/
+
+# 임시/개발용 파일
+a.py

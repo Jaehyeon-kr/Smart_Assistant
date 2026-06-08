@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \":*)",
+      "Bash(curl -s -X POST http://localhost:4000/api/auth/register -H \"Content-Type: application/json\" -d \"{\"\"email\"\":\"\"test@test.com\"\",\"\"password\"\":\"\"test1234\"\"}\")",
+      "Bash(curl -s -X POST http://localhost:4000/api/auth/login -H \"Content-Type: application/json\" -d \"{\"\"email\"\":\"\"test@test.com\"\",\"\"password\"\":\"\"test1234\"\"}\")",
+      "Bash(curl -s -X POST http://localhost:4000/api/pdfs -H \"Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImlhdCI6MTc4MDg5MTAxOSwiZXhwIjoxNzgwOTc3NDE5fQ.fpLxpmSUiwqWEraeorclbCR-SxjAPKLXZvCIO4QZUVM\" -F \"file=@\"\"e:\\\\3_1_home\\\\software_engineering\\\\new_sub\\\\소프트웨어공학 팀플.pdf\"\"\")",
+      "Bash(node -e \"require\\(''dotenv''\\).config\\(\\); console.log\\(''API KEY:'', process.env.ANTHROPIC_API_KEY ? process.env.ANTHROPIC_API_KEY.substring\\(0,20\\)+''...'' : ''NOT SET''\\)\")",
+      "Bash(node -e \"const p = require\\(''pdf-parse''\\); console.log\\(Object.keys\\(p\\)\\)\")",
+      "Bash(node -e \"const p = require\\(''pdf-parse''\\); console.log\\(typeof p.PDFParse\\)\")",
+      "Bash(npm uninstall:*)",
+      "Bash(curl -s http://localhost:4000/api/health)",
+      "Bash(netstat -ano)",
+      "Bash(findstr \":4000\")",
+      "Bash(tasklist //FI \"PID eq 10592\")",
+      "Bash(node -e \"const s = require\\(''sqlite3''\\); console.log\\(''ok''\\);\")"
+    ]
+  }
+}
