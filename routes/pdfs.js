@@ -9,7 +9,7 @@ const { generateSummary, generateQuestions } = require('../services/claudeServic
 const db = require('../db/init');
 
 const router = express.Router();
-const UPLOAD_DIR = UPLOAD_DIR || './uploads';
+const UPLOAD_DIR = process.env.UPLOAD_DIR || './uploads';
 
 // multer 설정
 const storage = multer.diskStorage({
