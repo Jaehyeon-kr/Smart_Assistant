@@ -466,7 +466,8 @@ function TutorPopup({ pdfId, onClose }) {
     const token = localStorage.getItem('token');
 
     try {
-      const res = await fetch(`http://localhost:4000/api/pdfs/${pdfId}/chat`, {
+      const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
+      const res = await fetch(`${baseURL}/api/pdfs/${pdfId}/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -581,7 +582,8 @@ export default function StudyPage() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    fetch(`http://localhost:4000/api/pdfs/${pdfId}/file`, {
+    const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
+    fetch(`${baseURL}/api/pdfs/${pdfId}/file`, {
       headers: token ? { Authorization: `Bearer ${token}` } : {},
     })
       .then(async (res) => {

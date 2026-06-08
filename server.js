@@ -15,7 +15,10 @@ const studyRoutes = require('./routes/study');
 const app = express();
 
 // 미들웨어
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URL || '*',
+  credentials: true,
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -36,6 +39,15 @@ app.use('/api', studyRoutes);
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: '서버가 정상 작동 중입니다' });
 });
+
+// 프론트엔드 빌드 파일 서빙 (production)
+const frontendBuild = path.join(__dirname, 'frontend', 'build');
+if (fs.existsSync(frontendBuild)) {
+  app.use(express.static(frontendBuild));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(frontendBuild, 'index.html'));
+  });
+}
 
 // 에러 핸들링
 app.use((err, req, res, next) => {
