@@ -25,8 +25,7 @@ dist/
 build/
 frontend/build/
 
-# PDF worker (node_modules에서 복사된 파일)
-frontend/public/pdf.worker.min.mjs
+# PDF worker - gitignore에서 제외 (빌드 스크립트로 복사)
 
 # Lock files (Railway 호환성 문제로 제외)
 package-lock.json

@@ -8,7 +8,7 @@ const client = new Anthropic({
 const generateSummary = async (extractedText) => {
   try {
     const message = await client.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-5',
       max_tokens: 1024,
       messages: [
         {
@@ -29,7 +29,7 @@ const generateSummary = async (extractedText) => {
 const generateQuestions = async (extractedText) => {
   try {
     const message = await client.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-5',
       max_tokens: 2048,
       messages: [
         {
@@ -73,7 +73,7 @@ const streamAITutor = async (extractedText, userMessage, history) => {
     ];
 
     const stream = await client.messages.stream({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-5',
       max_tokens: 1024,
       system: `당신은 학생의 학습을 돕는 교육 튜터입니다. 다음 PDF 내용을 바탕으로 학생의 질문에 답변하세요:
 

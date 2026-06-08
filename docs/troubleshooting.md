@@ -100,6 +100,16 @@ const content = res.data?.data?.content || res.data?.content;
 
 ---
 
+## 11. Railway 배포 - pdf.worker.min.mjs MIME 오류
+**증상**: `Failed to load module script: non-JavaScript MIME type of "text/html"` + `Setting up fake worker`
+**원인**: `pdf.worker.min.mjs`가 `.gitignore`에 있어서 Railway 빌드에 포함 안 됨. 파일 없으면 서버가 `index.html`(text/html)을 반환
+**해결**: `.gitignore`에서 제거하고, `frontend/package.json` build 스크립트에 자동 복사 추가
+```json
+"build": "cp node_modules/pdfjs-dist/build/pdf.worker.min.mjs public/pdf.worker.min.mjs && react-scripts build"
+```
+
+---
+
 ## 10. AI 튜터 SSE 파싱 오류
 **증상**: AI 튜터에서 메시지 전송 시 "오류가 발생했습니다" 표시
 **원인 1**: 백엔드가 `data: {"chunk":"[DONE]"}\n\n` 형식으로 SSE를 전송하는데, 프론트에서 raw 문자열 `chunk === '[DONE]'`로 비교. JSON을 파싱하지 않아 청크 내용을 읽을 수 없음
