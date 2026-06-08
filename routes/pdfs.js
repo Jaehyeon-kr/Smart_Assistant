@@ -9,12 +9,13 @@ const { generateSummary, generateQuestions } = require('../services/claudeServic
 const db = require('../db/init');
 
 const router = express.Router();
+const UPLOAD_DIR = UPLOAD_DIR || './uploads';
 
 // multer 설정
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const userId = req.userId;
-    const uploadPath = path.resolve(process.env.UPLOAD_DIR, String(userId));
+    const uploadPath = path.resolve(UPLOAD_DIR, String(userId));
 
     if (!fs.existsSync(uploadPath)) {
       fs.mkdirSync(uploadPath, { recursive: true });
@@ -215,7 +216,7 @@ router.delete('/pdfs/:pdfId', authMiddleware, (req, res) => {
       }
 
       // 파일 삭제
-      const filePath = path.resolve(process.env.UPLOAD_DIR, String(userId), pdf.storedName);
+      const filePath = path.resolve(UPLOAD_DIR, String(userId), pdf.storedName);
       if (fs.existsSync(filePath)) {
         fs.unlinkSync(filePath);
       }
@@ -235,7 +236,7 @@ router.get('/pdfs/:pdfId/file', authMiddleware, (req, res) => {
       return res.status(404).json({ error: 'PDF를 찾을 수 없습니다' });
     }
 
-    const filePath = path.resolve(process.env.UPLOAD_DIR, String(userId), pdf.storedName);
+    const filePath = path.resolve(UPLOAD_DIR, String(userId), pdf.storedName);
 
     res.sendFile(filePath, (err) => {
       if (err) {
